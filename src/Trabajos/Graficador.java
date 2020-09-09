@@ -37,7 +37,7 @@ public class Graficador extends JFrame {
 		
 		
 		
-		JLabel lblNewLabel = new JLabel("Tabla de símbolos final");
+		JLabel lblNewLabel = new JLabel("Tabla de sÃ­mbolos final");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setBounds(248, 29, 413, 63);
 		contentPane.add(lblNewLabel);
