@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class Compilador {
 
 	
+	
+	
 	//Método en el que se crea y se retorna la tabla que contiene los elementos 
 	//de mi lenguaje de programación parcial
 	public ArrayList <Elemento> creacionTabla () {
