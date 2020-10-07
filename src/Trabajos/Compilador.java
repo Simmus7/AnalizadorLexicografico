@@ -2,6 +2,8 @@ package Trabajos;
 
 import java.util.Arrays;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.EventQueue;
@@ -13,9 +15,8 @@ import java.util.ArrayList;
 
 
 public class Compilador {
-
 	
-	
+	private final JFileChooser selector = new JFileChooser();
 	
 	//Método en el que se crea y se retorna la tabla que contiene los elementos 
 	//de mi lenguaje de programación parcial
@@ -84,13 +85,23 @@ public class Compilador {
 
 	//Método para leer el archivo en el que está el código fuente de mi lenguaje de programación
 	//Retorna una matriz de caracteres
-	public char[][] leerArchivo () throws IOException {	
-		  
+	public char[][] leerArchivo () throws IOException {
+		
 		File archivo = null;
+		selector.setDialogTitle("Seleccione el codigo");
+		FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("TXT" , "txt" );
+		selector.setFileFilter(filtroImagen);
+		int flag = selector.showOpenDialog(null);
+		
+		if(flag == JFileChooser.APPROVE_OPTION) {	
+				archivo = selector.getSelectedFile();
+		}
+		
+			
 		FileReader f = null;
 		BufferedReader br = null;
 
-		archivo = new File ("src/Trabajos/Fichero.txt");
+		//archivo = new File ("src/Trabajos/Fichero.txt");
 		f = new FileReader (archivo);
 		br = new BufferedReader (f);
 		
@@ -304,28 +315,8 @@ public class Compilador {
 	
 	public static void main (String [] args) {
 		
-		System.out.println();
-		Compilador c = new Compilador ();
-		
-		char [][] matrizPrincipal = null;
-	   try {
-		matrizPrincipal = c.leerArchivo();
-		
-	   }
-	   
-
-	   catch (IOException e)  {
-		System.out.println("Excepcion, no se pudo leer el archivo");
-	   }	
-	 //Cramos las tablas necesarias y activamos las interfaces gráficas creadas
-	   ArrayList <Elemento> tablaDeSimbolos = c.creacionTabla();   
-	   ArrayList <Elemento> tablaFinal = c.analisisLexico(matrizPrincipal, tablaDeSimbolos);
-	   InterfazGrafica ig = new InterfazGrafica ();
-	   DefaultTableModel tabla = new DefaultTableModel();
-	   DefaultTableModel tablaSimbolos = new DefaultTableModel();
-	   tablaSimbolos = ig.generarModeloTablaSimbolos(tablaDeSimbolos);
-	   tabla = ig.generarModeloTabla(tablaFinal);
-	   Graficador2 ventanaInicial = new Graficador2 (tabla,tablaSimbolos);
+		//System.out.println();
+		InterfazHome ventanaInicial = new InterfazHome();
 	   
 	   EventQueue.invokeLater(new Runnable() {
 			public void run() {
