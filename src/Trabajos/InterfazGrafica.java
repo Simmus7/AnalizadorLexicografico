@@ -35,6 +35,31 @@ public class InterfazGrafica {
 		
 	}
 	
+public DefaultTableModel generarModeloTablaTokens (ArrayList <Token> tablaTokens) {
+		
+		Vector cabeceras = new Vector ();
+		cabeceras.addElement ("Token");
+		cabeceras.addElement ("Id");
+		cabeceras.addElement ("Lexema");
+		DefaultTableModel tabla = new DefaultTableModel (cabeceras, 0);
+		Vector x;
+		
+		for (int i = 0; i<tablaTokens.size(); i++) {
+			x = new Vector ();
+
+			x.addElement(tablaTokens.get(i).getNombreToken());
+			x.addElement(tablaTokens.get(i).getIdToken());
+			x.addElement(tablaTokens.get(i).getLexema());
+			tabla.addRow (x);
+			
+		}
+
+		
+		
+		return tabla;
+		
+	}
+	
 	
 public DefaultTableModel generarModeloTablaSimbolos (ArrayList <Elemento> tablaSimbolos) {
 		

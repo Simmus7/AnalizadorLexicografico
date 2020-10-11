@@ -45,7 +45,7 @@ public class InterfazTablaBase extends JFrame {
 		lblNewLabel.setBounds(226, 13, 413, 63);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnSalir = new JButton("Salir");
+		JButton btnSalir = new JButton("Atras");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

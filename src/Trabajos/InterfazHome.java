@@ -43,23 +43,35 @@ public class InterfazHome extends JFrame {
         		char [][] matrizPrincipal = null;
         		   try {
         			matrizPrincipal = c.leerArchivo();
+        			 //Cramos las tablas necesarias y activamos las interfaces graficas creadas
+         		   ArrayList <Elemento> tablaDeSimbolos = c.creacionTabla();   
+         		   ArrayList <Elemento> tablaFinal = c.analisisLexico(matrizPrincipal, tablaDeSimbolos);
+         		 
+       		       ArrayList <Token> tablaTokensFinal = c.generadorTablaTokens (c.creacionTokens() ,tablaFinal);
+       		       
+         		   InterfazGrafica ig = new InterfazGrafica ();
+         		   
+         		   DefaultTableModel tabla = new DefaultTableModel();
+         		   DefaultTableModel tablaSimbolos = new DefaultTableModel();
+         		   DefaultTableModel tablaTokens = new DefaultTableModel();
+         		   
+         		   tablaSimbolos = ig.generarModeloTablaSimbolos(tablaDeSimbolos);
+         		   tabla = ig.generarModeloTabla(tablaFinal);
+         		   tablaTokens = ig.generarModeloTablaTokens(tablaTokensFinal);
+         		   
+         		   InterfazGeneradora ventanaGeneradora = new InterfazGeneradora (tabla,tablaSimbolos, tablaTokens);
+         		   dispose();
+         		   ventanaGeneradora.setVisible(true);
         			
         		   }
         		   
         		   catch (IOException e1)  {
         			System.out.println("Excepcion, no se pudo leer el archivo");
-        		   }	
-        		 //Cramos las tablas necesarias y activamos las interfaces grÃ¡ficas creadas
-        		   ArrayList <Elemento> tablaDeSimbolos = c.creacionTabla();   
-        		   ArrayList <Elemento> tablaFinal = c.analisisLexico(matrizPrincipal, tablaDeSimbolos);
-        		   InterfazGrafica ig = new InterfazGrafica ();
-        		   DefaultTableModel tabla = new DefaultTableModel();
-        		   DefaultTableModel tablaSimbolos = new DefaultTableModel();
-        		   tablaSimbolos = ig.generarModeloTablaSimbolos(tablaDeSimbolos);
-        		   tabla = ig.generarModeloTabla(tablaFinal);
-        		   InterfazGeneradora ventanaGeneradora = new InterfazGeneradora (tabla,tablaSimbolos);
-        		   dispose();
-        		   ventanaGeneradora.setVisible(true);
+        		   } catch (Exception e1) {
+					
+					System.out.println("No se seleccionó el archivo");
+				}	
+        	
         	}
         });
         btnInsertarArchivo.setBounds(12, 119, 185, 55);

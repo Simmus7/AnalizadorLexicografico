@@ -24,11 +24,11 @@ public class InterfazGeneradora extends JFrame {
     private JPanel contentPane;
 
    
-    public InterfazGeneradora(DefaultTableModel tabla,DefaultTableModel tablaSimbolos) {
+    public InterfazGeneradora(DefaultTableModel tabla,DefaultTableModel tablaSimbolos, DefaultTableModel tablaTokens) {
     	
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 533, 243);
+        setBounds(100, 100, 533, 364);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -54,8 +54,25 @@ public class InterfazGeneradora extends JFrame {
         		
         	}
         });
+        
         btnNewButton.setBounds(278, 71, 211, 55);
         contentPane.add(btnNewButton);
+        
+        //VERIFICAR
+        JButton btnNewButton_2 = new JButton("Generar Tabla de Tokens");
+        btnNewButton_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		 InterfazTablaToken g = new InterfazTablaToken ();
+                 g.table.setModel(tablaTokens);
+                 g.setVisible(true);
+        		
+        	}
+        });
+        
+        btnNewButton_2.setBounds(10, 149, 232, 54);
+        contentPane.add(btnNewButton_2);
+        
+        
         
         JButton btnSalir = new JButton("Salir");
         btnSalir.addActionListener(new ActionListener() {
@@ -63,7 +80,7 @@ public class InterfazGeneradora extends JFrame {
         		dispose();
         	}
         });
-        btnSalir.setBounds(278, 137, 211, 45);
+        btnSalir.setBounds(278, 238, 211, 45);
         contentPane.add(btnSalir);
         
         JButton btnNewButton_1 = new JButton("Atras");
@@ -75,12 +92,14 @@ public class InterfazGeneradora extends JFrame {
         		
         	}
         });
-        btnNewButton_1.setBounds(12, 138, 230, 45);
+        btnNewButton_1.setBounds(12, 238, 230, 45);
         contentPane.add(btnNewButton_1);
         
         JLabel lblNewLabel = new JLabel("Analizador Lexicografico");
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
         lblNewLabel.setBounds(94, 13, 320, 45);
         contentPane.add(lblNewLabel);
+        
+        
     }
 }

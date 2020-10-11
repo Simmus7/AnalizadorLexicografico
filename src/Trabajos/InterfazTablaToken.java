@@ -2,31 +2,28 @@ package Trabajos;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import java.awt.Color;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Font;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
 
-public class InterfazTablaFinal extends JFrame {
+public class InterfazTablaToken extends JFrame {
 
-    private JPanel contentPane;
-    JTable table;
-    private JScrollPane scrollPane;
-    private JButton btnSalir;
+	   private JPanel contentPane;
+	    JTable table;
+	    private JScrollPane scrollPane;
+	    private JButton btnSalir;
 
-    
-    public InterfazTablaFinal() {
-    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public InterfazTablaToken() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 891, 487);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -42,7 +39,7 @@ public class InterfazTablaFinal extends JFrame {
 		
 		
 		
-		JLabel lblNewLabel = new JLabel("Tabla de simbolos final");
+		JLabel lblNewLabel = new JLabel("Tabla de Tokens");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblNewLabel.setBounds(248, 13, 413, 63);
@@ -56,8 +53,6 @@ public class InterfazTablaFinal extends JFrame {
 		});
 		btnSalir.setBounds(728, 401, 133, 33);
 		contentPane.add(btnSalir);
+	}
 
-
-
-    }
 }

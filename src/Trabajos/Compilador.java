@@ -18,74 +18,78 @@ public class Compilador {
 	
 	private final JFileChooser selector = new JFileChooser();
 	
-	//Método en el que se crea y se retorna la tabla que contiene los elementos 
-	//de mi lenguaje de programación parcial
-	public ArrayList <Elemento> creacionTabla () {
-		
-		//Tabla de símbolos a retornar
-		ArrayList <Elemento> tablaDeSimbolos = new ArrayList <Elemento>();
+	//TODO LO DEL ANALISIS LEXICOGRAFICO:
+	
+	
+//-----------------------------------------------------------------------------------------------------------------------------//	
+	    //Metodo en el que se crea y se retorna la tabla que contiene los elementos 
+		//de mi lenguaje de programación parcial
+		public ArrayList <Elemento> creacionTabla () {
+			
+			//Tabla de símbolos a retornar
+			ArrayList <Elemento> tablaDeSimbolos = new ArrayList <Elemento>();
 
-		//Elementos no separadores
-		Elemento e1 = new Elemento ("public", false);
-			e1.addTipo ("Palabra Clave");
+			//Elementos no separadores
+			Elemento e1 = new Elemento ("public", false);
+				e1.addTipo ("Palabra Clave");
+				
+			Elemento e2 = new Elemento ("return", false);
+				e2.addTipo ("Palabra Clave");
+				
+			Elemento e3 = new Elemento ("private", false);
+				e3.addTipo ("Palabra Clave");
 			
-		Elemento e2 = new Elemento ("return", false);
-			e2.addTipo ("Palabra Clave");
+			Elemento e7 = new Elemento ("static", false);
+				e7.addTipo ("Palabra Clave");
 			
-		Elemento e3 = new Elemento ("private", false);
-			e3.addTipo ("Palabra Clave");
-		
-		Elemento e7 = new Elemento ("static", false);
-			e7.addTipo ("Palabra Clave");
-		
-		Elemento e8 = new Elemento ("void", false);
-			e8.addTipo ("Palabra Clave");
+			Elemento e8 = new Elemento ("void", false);
+				e8.addTipo ("Palabra Clave");
+				
+			Elemento e11 = new Elemento ("int", false);
+				e11.addTipo ("Palabra Clave");
+				e11.addTipo("Tipo de Dato");
+				e11.addTipo("Identificador");
+				
 			
-		Elemento e11 = new Elemento ("int", false);
-			e11.addTipo ("Palabra Clave");
-			e11.addTipo("Tipo de Dato");
-			e11.addTipo("Identificador");
+			// Elemtos separadores (entonces se les envía true como parámetro del constructor)
+			Elemento e4 = new Elemento (" ", true);
+			   e4.addTipo ("Separador");
+			Elemento e5 = new Elemento ("(", true);
+				e5.addTipo ("Separador");
+			Elemento e6 = new Elemento (";", true);
+				e6.addTipo ("Separador");
+			Elemento e9 = new Elemento ("{", true);
+				e9.addTipo ("Separador");
+				e9.addTipo("Agrupador de codigo");
+			Elemento e10 = new Elemento ("}", true);
+				e10.addTipo ("Separador");
+				e10.addTipo("Agrupador de codigo");
 			
-		
-		// Elemtos separadores (entonces se les envía true como parámetro del constructor)
-		Elemento e4 = new Elemento (" ", true);
-		   e4.addTipo ("Separador");
-		Elemento e5 = new Elemento ("(", true);
-			e5.addTipo ("Separador");
-		Elemento e6 = new Elemento (";", true);
-			e6.addTipo ("Separador");
-		Elemento e9 = new Elemento ("{", true);
-			e9.addTipo ("Separador");
-			e9.addTipo("Agrupador de codigo");
-		Elemento e10 = new Elemento ("}", true);
-			e10.addTipo ("Separador");
-			e10.addTipo("Agrupador de codigo");
-		//Agrego el tab, son 4 espacios al parecer
-		Elemento e12 = new Elemento ("\t", true);
-			e12.addTipo ("Separador");
-			e12.addTipo("TAB");
- 
-		tablaDeSimbolos.add(e1);
-		tablaDeSimbolos.add(e2);
-		tablaDeSimbolos.add(e3);
-		tablaDeSimbolos.add(e4);
-		tablaDeSimbolos.add(e5);
-		tablaDeSimbolos.add(e6);
-		tablaDeSimbolos.add(e7);
-		tablaDeSimbolos.add(e8);
-		tablaDeSimbolos.add(e9);
-		tablaDeSimbolos.add(e10);
-		tablaDeSimbolos.add(e11);
-		tablaDeSimbolos.add(e12);
-		
-		
-		return tablaDeSimbolos;
+			Elemento e12 = new Elemento ("\t", true);
+				e12.addTipo ("Separador");
+				e12.addTipo("TAB");
+	 
+			tablaDeSimbolos.add(e1);
+			tablaDeSimbolos.add(e2);
+			tablaDeSimbolos.add(e3);
+			tablaDeSimbolos.add(e4);
+			tablaDeSimbolos.add(e5);
+			tablaDeSimbolos.add(e6);
+			tablaDeSimbolos.add(e7);
+			tablaDeSimbolos.add(e8);
+			tablaDeSimbolos.add(e9);
+			tablaDeSimbolos.add(e10);
+			tablaDeSimbolos.add(e11);
+			tablaDeSimbolos.add(e12);
+			
+			
+			return tablaDeSimbolos;
 
-	}
-
-	//Método para leer el archivo en el que está el código fuente de mi lenguaje de programación
-	//Retorna una matriz de caracteres
-	public char[][] leerArchivo () throws IOException {
+		}
+	   
+	     //Método para leer el archivo en el que está el código fuente de mi lenguaje de programación
+	    //Retorna una matriz de caracteres
+        public char[][] leerArchivo () throws Exception {
 		
 		File archivo = null;
 		selector.setDialogTitle("Seleccione el codigo");
@@ -96,6 +100,7 @@ public class Compilador {
 		if(flag == JFileChooser.APPROVE_OPTION) {	
 				archivo = selector.getSelectedFile();
 		}
+		
 		
 			
 		FileReader f = null;
@@ -124,8 +129,8 @@ public class Compilador {
 
 	}
 
-	//Imprime la matriz de caracteres
-	public void impMatriz (char [][] matriz) {
+	    //Imprime la matriz de caracteres
+	    public void impMatriz (char [][] matriz) {
 		for (int x=0; x < matriz.length; x++) {
 			for (int y=0; y < matriz[x].length; y++) {
 			  System.out.print (matriz[x][y]);
@@ -135,8 +140,8 @@ public class Compilador {
 		  }
 	}
 
-	//Busca un elemento dentro de la tabla de símbolos (servirá para el analizador léxico)
-	public Elemento buscarElemento (ArrayList <Elemento> tablaDeSimbolos, String toSearch){
+	    //Busca un elemento dentro de la tabla de símbolos (servirá para el analizador lexico)
+	    public Elemento buscarElemento (ArrayList <Elemento> tablaDeSimbolos, String toSearch){
 		Elemento temp = null;
 		int i = 0;
 		while (i<tablaDeSimbolos.size()){
@@ -152,10 +157,10 @@ public class Compilador {
 
 	}
 		
-	//Método que retorna la tabla final de Elementos dentro del fichero
-	//Lo que hace es recorrer la matriz casilla por casilla, adquiriendo la cadena que se va formando
-	//Y teniendo en cuenta los separadores para identificar cada elemento 
-	public ArrayList <Elemento> analisisLexico (char [][] matriz, ArrayList <Elemento> tablaDeSimbolos){
+	    //Método que retorna la tabla final de Elementos dentro del fichero
+	    //Lo que hace es recorrer la matriz casilla por casilla, adquiriendo la cadena que se va formando
+	    //Y teniendo en cuenta los separadores para identificar cada elemento 
+	    public ArrayList <Elemento> analisisLexico (char [][] matriz, ArrayList <Elemento> tablaDeSimbolos){
 		//Creo la tabla final a retornar 
 		ArrayList<Elemento> tablaFinal = new ArrayList <Elemento>();
 		//Y las variables necesarias
@@ -173,7 +178,7 @@ public class Compilador {
 				
 				if (temp == null) {
 					
-					//Si estoy en la última columna de alguna fila de mi matriz
+					//Si estoy en la ultima columna de alguna fila de mi matriz
 					//Debo fijarme si el elemento es un separador o no
 					//si lo es, lo agrego a la tabla
 					//si no lo es, agrego el caracter al acumulador y posteriormente a la tabla
@@ -213,7 +218,7 @@ public class Compilador {
 							
 							
 						}
-						//Si en mi primera columna no había un separador o no estoy en mi primera columna
+						//Si en mi primera columna no habia un separador o no estoy en mi primera columna
 						//debo seguir leyendo normalmente
 						if (aux == null || col != 0 ){
 						
@@ -295,22 +300,115 @@ public class Compilador {
 		return tablaFinal;
 
 	}
-
-
-	public void imprimirTablaFinal (ArrayList <Elemento> tablaFinal){
-		Elemento aux;
-		for (int i = 0; i<tablaFinal.size(); i++){
-			aux = tablaFinal.get(i);
-			System.out.print(aux.getCadena() + " -- " + aux.getPosicion().fila + ", " + aux.getPosicion().columna + " -- " + aux.tiposEnCadena());
-			System.out.println();
-			
-		}
-
-
-
-
-
+	
+	
+//-----------------------------------------------------------------------------------------------------------------------------//	
+	//TODO LO DE LA TABLA DE TOKENS:
+	    
+	    //Crea la tabla de Tokens previa
+	    public ArrayList<Token> creacionTokens (){
+		ArrayList <Token> listaTokens = new ArrayList <Token>();
+		
+		Token t1 = new Token ("Public", 1, "public");
+		Token t2 = new Token ("Static", 12, "static");
+		Token t3 = new Token ("Void", 2, "void");
+		Token t4= new Token ("Main", 3, "main");
+		Token t5 = new Token ("Espacio", 4, " ");
+		//Ojo cuidao por si es /t
+		Token t6 = new Token ("Tab", 5, "	");
+		Token t7 = new Token ("tipoDatoEntero", 6, "int");
+		Token t8 = new Token ("PuntoYComa", 7, ";");
+		Token t9 = new Token ("LlaveApertura", 8, "{");
+		Token t10 = new Token ("LlaveCierre", 10, "}");
+		Token t11= new Token ("ParentesisApertura", 10, "(");
+		Token t12= new Token ("ParentesisCierre", 11, ")");
+		//Considerar que el lexema sea \n
+		Token t13= new Token ("SaltoDeLinea", 13, "SaltoDeLinea");
+		
+		listaTokens.add(t1);
+		listaTokens.add(t2);
+		listaTokens.add(t3);
+		listaTokens.add(t4);
+		listaTokens.add(t5);
+		listaTokens.add(t6);
+		listaTokens.add(t7);
+		listaTokens.add(t8);
+		listaTokens.add(t9);
+		listaTokens.add(t10);
+		listaTokens.add(t11);
+		listaTokens.add(t12);
+		listaTokens.add(t13);
+		return listaTokens;
+		
 	}
+	
+	    //Busca y retorna un token dentro de la lista de tokens, pa saber si est� en la lista o si el elemento ingresado
+	    //Es un identificador
+	    public Token buscarToken (Elemento toSearch, ArrayList<Token>listaTokenPredeterminada) {
+	Token temp = null;
+	int i = 0;
+	while (i<listaTokenPredeterminada.size()) {
+		if (listaTokenPredeterminada.get(i).getLexema().equals(toSearch.getCadena())) {
+			temp = new Token ();
+			temp.setIdToken(listaTokenPredeterminada.get(i).getIdToken());
+			temp.setLexema(listaTokenPredeterminada.get(i).getLexema());
+			temp.setNombreToken(listaTokenPredeterminada.get(i).getNombreToken());
+			
+			break;
+		}
+		i++;
+		
+	}
+	if (temp == null) {
+		temp = new Token ("Identificador", 23, toSearch.getCadena());
+	}
+	
+	return temp;
+}
+
+	    //Busca si un token est� contenido en la tabla de tokens, porque si esta contenido
+	    //no lo agregamos a la tabla
+	    public boolean contains (ArrayList <Token> tablaTokens, Token toSearch) {
+	int a = 0;
+	boolean toReturn = false;
+	while (a<tablaTokens.size()) {
+		if (tablaTokens.get(a).getLexema().equals(toSearch.getLexema())) {
+			toReturn = true;
+			break;
+		}
+		a++;
+		
+		
+	}
+	return toReturn;
+}
+	    //A partir del codigo fuente en la tablaFinal, llena un Arraylist con los elementos que 
+	    //estar�n en la tabla de Tokens
+	    public ArrayList <Token> generadorTablaTokens (ArrayList <Token> listaTokenPredeterminada, ArrayList <Elemento> tablaFinal){
+	boolean flag = false;
+	ArrayList <Token> tablaTokens = new ArrayList <Token>();
+	Token temp = new Token ();
+	for (int i = 0; i<tablaFinal.size(); i++) {
+		temp = buscarToken (tablaFinal.get(i), listaTokenPredeterminada);
+		if (!contains(tablaTokens, temp)) {
+			if (temp.getLexema().equals("SaltoDeLinea") && !flag) {
+				temp.setLexema("\\n");
+				flag = true;
+			}
+			if (!temp.getLexema().equals("SaltoDeLinea")){
+			tablaTokens.add(temp);
+			
+		       }
+			}
+		
+	}
+	return tablaTokens;
+}
+	   
+ //-----------------------------------------------------------------------------------------------------------------------------//	
+
+
+	
 
 	
 	public static void main (String [] args) {
@@ -331,21 +429,7 @@ public class Compilador {
 			}
 		});
 	   
-	   
-	   
-	   
-	   
-	   
-	  
-
-
-
-	
-		
-
-	
-
-	   System.out.println();
+	    System.out.println();
 	}
 }
 
