@@ -65,9 +65,13 @@ public class Compilador {
 				e10.addTipo ("Separador");
 				e10.addTipo("Agrupador de codigo");
 			
+			
 			Elemento e12 = new Elemento ("\t", true);
 				e12.addTipo ("Separador");
 				e12.addTipo("TAB");
+				
+			Elemento e13 = new Elemento (")", true);
+				e13.addTipo ("Separador");				
 	 
 			tablaDeSimbolos.add(e1);
 			tablaDeSimbolos.add(e2);
@@ -81,6 +85,7 @@ public class Compilador {
 			tablaDeSimbolos.add(e10);
 			tablaDeSimbolos.add(e11);
 			tablaDeSimbolos.add(e12);
+			tablaDeSimbolos.add(e13);
 			
 			
 			return tablaDeSimbolos;
