@@ -24,11 +24,11 @@ public class InterfazGeneradora extends JFrame {
     private JPanel contentPane;
 
    
-    public InterfazGeneradora(DefaultTableModel tabla,DefaultTableModel tablaSimbolos, DefaultTableModel tablaTokens) {
+    public InterfazGeneradora(DefaultTableModel tabla,DefaultTableModel tablaSimbolos, DefaultTableModel tablaTokens, DefaultTableModel tablaExpresiones) {
     	
     	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 533, 364);
+        setBounds(100, 100, 544, 364);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -55,7 +55,7 @@ public class InterfazGeneradora extends JFrame {
         	}
         });
         
-        btnNewButton.setBounds(278, 71, 211, 55);
+        btnNewButton.setBounds(278, 71, 223, 55);
         contentPane.add(btnNewButton);
         
         //VERIFICAR
@@ -80,7 +80,7 @@ public class InterfazGeneradora extends JFrame {
         		dispose();
         	}
         });
-        btnSalir.setBounds(278, 238, 211, 45);
+        btnSalir.setBounds(278, 238, 223, 45);
         contentPane.add(btnSalir);
         
         JButton btnNewButton_1 = new JButton("Atras");
@@ -99,6 +99,17 @@ public class InterfazGeneradora extends JFrame {
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
         lblNewLabel.setBounds(94, 13, 320, 45);
         contentPane.add(lblNewLabel);
+        
+        JButton btnExpresiones = new JButton("Mostrar expresiones aritmeticas");
+        btnExpresiones.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		InterfazExpresionesA g = new InterfazExpresionesA();
+        		g.table.setModel(tablaExpresiones);
+        		g.setVisible(true);
+        	}
+        });
+        btnExpresiones.setBounds(278, 148, 223, 55);
+        contentPane.add(btnExpresiones);
         
         
     }

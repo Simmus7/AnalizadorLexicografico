@@ -46,20 +46,22 @@ public class InterfazHome extends JFrame {
         			 //Cramos las tablas necesarias y activamos las interfaces graficas creadas
          		   ArrayList <Elemento> tablaDeSimbolos = c.creacionTabla();   
          		   ArrayList <Elemento> tablaFinal = c.analisisLexico(matrizPrincipal, tablaDeSimbolos);
-         		 
        		       ArrayList <Token> tablaTokensFinal = c.generadorTablaTokens (c.creacionTokens() ,tablaFinal);
-       		       
+       		       ArrayList <ExpresionAritmetica> tablaExpresionesA = c.buscarExpresion(matrizPrincipal); 		      
+       		    
          		   InterfazGrafica ig = new InterfazGrafica ();
          		   
          		   DefaultTableModel tabla = new DefaultTableModel();
          		   DefaultTableModel tablaSimbolos = new DefaultTableModel();
          		   DefaultTableModel tablaTokens = new DefaultTableModel();
+         		   DefaultTableModel tablaExpresiones = new DefaultTableModel();
          		   
          		   tablaSimbolos = ig.generarModeloTablaSimbolos(tablaDeSimbolos);
          		   tabla = ig.generarModeloTabla(tablaFinal);
          		   tablaTokens = ig.generarModeloTablaTokens(tablaTokensFinal);
+         		   tablaExpresiones = ig.generarModeloTablaExpresiones(tablaExpresionesA);
          		   
-         		   InterfazGeneradora ventanaGeneradora = new InterfazGeneradora (tabla,tablaSimbolos, tablaTokens);
+         		   InterfazGeneradora ventanaGeneradora = new InterfazGeneradora (tabla,tablaSimbolos, tablaTokens,tablaExpresiones);
          		   dispose();
          		   ventanaGeneradora.setVisible(true);
         			

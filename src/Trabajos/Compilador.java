@@ -411,9 +411,48 @@ public class Compilador {
 }
 	   
  //-----------------------------------------------------------------------------------------------------------------------------//	
+	 //EXPRESIONES ARITMETICAS:
+	    
+	    
+	    public ArrayList<ExpresionAritmetica> buscarExpresion(char[][] codigoFuente){
+	    	ArrayList<ExpresionAritmetica> tablaExpresiones = new ArrayList<ExpresionAritmetica>();
+	    	String acum = "";
+	    	
+	    	for(int i = 0; i<codigoFuente.length; i++) {
+	    		acum = "";
+	    		for(int j = 0; j<codigoFuente[i].length; j++) {
+	    			if(codigoFuente[i][j] == '0' || codigoFuente[i][j] == '1' || codigoFuente[i][j] == '2' || codigoFuente[i][j] == '3' || codigoFuente[i][j] == '4' || codigoFuente[i][j] == '5' || codigoFuente[i][j] == '6' || codigoFuente[i][j] == '7' || codigoFuente[i][j] == '8' || codigoFuente[i][j] == '9' || codigoFuente[i][j] == '+' || codigoFuente[i][j] == '-' || codigoFuente[i][j] == '/' || codigoFuente[i][j] == '*' || codigoFuente[i][j] == '(' || codigoFuente[i][j] == ')' || codigoFuente[i][j] == '%' || codigoFuente[i][j] == '^') { 
+	    			acum += codigoFuente[i][j]; 
+	    			}
+	    			
+	    			else if (acum!= "") {
+	    				ExpresionAritmetica ea = new ExpresionAritmetica(acum);
+	    				ea.setPosicion(i+1, j-acum.length()+1);
+	    				tablaExpresiones.add(ea);
+	    				acum ="";
+	    			}
+	    			//Caso en que llega al final de la columna con una expresión 
+	    			if(j==codigoFuente[i].length-1 && acum!= "") {
+	    				ExpresionAritmetica ea = new ExpresionAritmetica(acum);
+	    				ea.setPosicion(i+1, j-acum.length()+1);
+	    				tablaExpresiones.add(ea);
+	    				acum = "";
+	    			}
+	    		}
+	    	}
+	    	
+	    	
+	    	return tablaExpresiones;
+	    	
+	    }
+	    
+	    
 
 
-	
+	    
+	    
+	    
+ //-----------------------------------------------------------------------------------------------------------------------------//	
 
 	
 	public static void main (String [] args) {

@@ -83,4 +83,26 @@ public DefaultTableModel generarModeloTablaSimbolos (ArrayList <Elemento> tablaS
 		
 	}
 
+public DefaultTableModel generarModeloTablaExpresiones (ArrayList <ExpresionAritmetica> tablaExpresiones) {
+	
+	Vector cabeceras = new Vector ();
+	cabeceras.addElement ("Expresion");
+	cabeceras.addElement ("Posicion");
+	DefaultTableModel tabla = new DefaultTableModel (cabeceras, 0);
+	Vector x;
+	
+	for (int i = 0; i<tablaExpresiones.size(); i++) {
+		x = new Vector ();
+		x.addElement(tablaExpresiones.get(i).getCadena());
+		x.addElement(tablaExpresiones.get(i).getPosicion().posicionComoString());
+		tabla.addRow (x);
+		
+	}
+
+	
+	
+	return tabla;
+	
+}
+
 }
