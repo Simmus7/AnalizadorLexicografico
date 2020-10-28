@@ -42,7 +42,7 @@ public class InterfazExpresionesA extends JFrame {
 		JLabel lblNewLabel = new JLabel("Tabla de Expresiones Aritmeticas");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel.setBounds(248, 13, 413, 63);
+		lblNewLabel.setBounds(207, 11, 499, 63);
 		contentPane.add(lblNewLabel);
 		
 		btnSalir = new JButton("Atras");
