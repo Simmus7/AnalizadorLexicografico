@@ -2,12 +2,17 @@ package Trabajos;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 
 public class InterfazGrafica {
 	
-	
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
 	
 	public DefaultTableModel generarModeloTabla (ArrayList <Elemento> tablaFinal) {
@@ -88,8 +93,11 @@ public DefaultTableModel generarModeloTablaExpresiones (ArrayList <ExpresionArit
 	Vector cabeceras = new Vector ();
 	cabeceras.addElement ("Expresion");
 	cabeceras.addElement ("Posicion");
+	cabeceras.addElement("Seleccionar");
 	DefaultTableModel tabla = new DefaultTableModel (cabeceras, 0);
 	Vector x;
+	ButtonGroup buttonGroup = new ButtonGroup();
+	JRadioButton rb = new JRadioButton();
 	
 	for (int i = 0; i<tablaExpresiones.size(); i++) {
 		x = new Vector ();
@@ -97,12 +105,11 @@ public DefaultTableModel generarModeloTablaExpresiones (ArrayList <ExpresionArit
 		x.addElement(tablaExpresiones.get(i).getPosicion().posicionComoString());
 		tabla.addRow (x);
 		
-	}
-
-	
-	
+	}	
 	return tabla;
 	
 }
+
+
 
 }

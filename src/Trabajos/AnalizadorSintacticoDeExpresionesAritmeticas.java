@@ -66,8 +66,7 @@ public class AnalizadorSintacticoDeExpresionesAritmeticas {
 	        else {
 	        	//ERROR POR SI NO CIERRA PARENTESIS
 	        	isAccepted  = false;
-	        	System.out.println("ERROR EN LA POSICION #"+(posicion+1));
-	        	throw (new ErrorEnLaSintaxis());
+	        	throw (new ErrorEnLaSintaxis(posicion+1));
 	        	
 	        }
 	        
@@ -87,8 +86,7 @@ public class AnalizadorSintacticoDeExpresionesAritmeticas {
 		}
 		else {
 			isAccepted = false;
-			System.out.println("ERROR EN LA POSICION #"+(posicion+1));
-			throw (new ErrorEnLaSintaxis());
+			throw (new ErrorEnLaSintaxis(posicion+1));
 		}
 		NUMS_PRIMA ();
 	}
@@ -127,15 +125,13 @@ public class AnalizadorSintacticoDeExpresionesAritmeticas {
     //En caso de que TODA la cadena haya sido leída, significa que ésta es aceptada
     public boolean seLeyoTodaLaCadena () throws ErrorEnLaSintaxis {
 	if (posicion!=cadena.length()-1) {
-		System.out.println("ERROR EN LA POSICION #"+(posicion+1));
 		isAccepted = false;
-		throw (new ErrorEnLaSintaxis());
+		throw (new ErrorEnLaSintaxis(posicion+1));
 	}
 	else {
 	
 		if (!isAccepted) {
-			System.out.println("ERROR EN LA POSICION #"+(posicion+1));
-			throw (new ErrorEnLaSintaxis());
+			throw (new ErrorEnLaSintaxis(posicion+1));
 		}
 		return isAccepted;
 	}
@@ -161,18 +157,17 @@ public boolean isN(char a) {
 
 
 
-public static void main (String [] args) {
-	AnalizadorSintacticoDeExpresionesAritmeticas a = new AnalizadorSintacticoDeExpresionesAritmeticas("21341234*(23452345)");
+/*public static void main (String [] args) {
+	AnalizadorSintacticoDeExpresionesAritmeticas a = new AnalizadorSintacticoDeExpresionesAritmeticas("21341234*+(23452345)");
 	try {
 		a.Analizar();
 	    a.seLeyoTodaLaCadena();
-		System.out.println("ACEPTADA");
 	}
 	catch (Exception e) {
 		
 	}
 	
-}
+}*/
 
 	
 	

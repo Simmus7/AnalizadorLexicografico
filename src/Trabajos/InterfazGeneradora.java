@@ -105,7 +105,9 @@ public class InterfazGeneradora extends JFrame {
         	public void actionPerformed(ActionEvent arg0) {
         		InterfazExpresionesA g = new InterfazExpresionesA();
         		g.table.setModel(tablaExpresiones);
+        		g.addCheckBox(2, g.table);
         		g.setVisible(true);
+        		
         	}
         });
         btnExpresiones.setBounds(278, 148, 223, 55);
